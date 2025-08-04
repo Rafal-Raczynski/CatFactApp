@@ -19,9 +19,16 @@ namespace CatFactApp
 
         public async Task RunAsync()
         {
-            var fact = await _catFactService.GetCatFactAsync();
-            await _fileWriter.AppendFactAsync("cat_facts.txt", fact);
-            Console.WriteLine($"Saved fact: {fact.Fact} (Length: {fact.Length})");
+            try
+            {
+                var fact = await _catFactService.GetCatFactAsync();
+                await _fileWriter.AppendFactAsync("cat_facts.txt", fact);
+                Console.WriteLine($"Saved fact: {fact.Fact} (Length: {fact.Length})");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
         }
     }
 }

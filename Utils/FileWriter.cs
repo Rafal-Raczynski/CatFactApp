@@ -9,13 +9,16 @@ namespace CatFactApp.Utils
     {
         public async Task AppendFactAsync(string fileName, CatFact fact)
         {
-            // Ustalam ścieżkę folderu względem katalogu projektu
-            string dataFolder = Path.Combine(Directory.GetCurrentDirectory(), "Data");
-            if (!Directory.Exists(dataFolder))
-                Directory.CreateDirectory(dataFolder);
+            // Katalog startowy aplikacji (tam gdzie masz .csproj)
+            string projectRoot = GetProjectRoot();
 
-            // Ścieżka do pliku
-            string filePath = Path.Combine(dataFolder, "cat_facts.txt");
+            // Katalog Data w katalogu projektu
+            string dataDir = Path.Combine(projectRoot, "Data");
+            if (!Directory.Exists(dataDir))
+                Directory.CreateDirectory(dataDir);
+
+            // Ścieżka do pliku z nazwą podaną w parametrze (np. cat_facts.txt)
+            string filePath = Path.Combine(dataDir, fileName);
 
             bool writeHeader = !File.Exists(filePath) || new FileInfo(filePath).Length == 0;
 
@@ -25,6 +28,23 @@ namespace CatFactApp.Utils
                     await stream.WriteLineAsync("facts,length");
                 await stream.WriteLineAsync($"{fact.Fact?.Replace(",", " ")},{fact.Length}");
             }
+        }
+        private string GetProjectRoot()
+        {
+            string dir = AppContext.BaseDirectory;
+            while (!string.IsNullOrEmpty(dir) && Directory.Exists(dir))
+            {
+                var csprojFiles = Directory.GetFiles(dir, "*.csproj");
+                if (csprojFiles.Length > 0)
+                    return dir;
+
+                var parent = Directory.GetParent(dir);
+                if (parent == null || parent.FullName == dir)
+                    break;
+                dir = parent.FullName;
+            }
+            // Jeśli nie znajdzie .csproj, zwraca katalog startowy aplikacji
+            return AppContext.BaseDirectory;
         }
     }
 }
