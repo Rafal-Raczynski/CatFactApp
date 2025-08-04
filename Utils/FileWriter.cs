@@ -25,7 +25,7 @@ namespace CatFactApp.Utils
             using (var stream = new StreamWriter(filePath, append: true))
             {
                 if (writeHeader)
-                    await stream.WriteLineAsync("facts,length");
+                    await stream.WriteLineAsync("fact,length");
                 await stream.WriteLineAsync($"\"{fact.Fact}\",{fact.Length}");
             }
         }

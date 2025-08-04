@@ -23,7 +23,7 @@ namespace CatFactApp
             {
                 var fact = await _catFactService.GetCatFactAsync();
                 await _fileWriter.AppendFactAsync("cat_facts.txt", fact);
-                Console.WriteLine($"Saved fact: {fact.Fact} (Length: {fact.Length})");
+                Console.WriteLine($"Saved fact: {fact.Fact} (length: {fact.Length})");
             }
             catch (Exception ex)
             {
