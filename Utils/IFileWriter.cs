@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using CatFactApp.Models;
 
 namespace CatFactApp.Utils
 {
     public interface IFileWriter
     {
-        Task AppendLineAsync(string fileName, string content);
-
+        Task AppendFactAsync(string fileName, CatFact fact);
     }
 }

@@ -1,16 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.IO;
 using System.Threading.Tasks;
+using CatFactApp.Models;
 
 namespace CatFactApp.Utils
 {
     public class FileWriter : IFileWriter
-{
-    public async Task AppendLineAsync(string fileName, string content)
     {
-        await File.AppendAllTextAsync(fileName, content + Environment.NewLine);
+        public async Task AppendFactAsync(string fileName, CatFact fact)
+        {
+            bool writeHeader = !File.Exists(fileName) || new FileInfo(fileName).Length == 0;
+
+            using (var stream = new StreamWriter(fileName, append: true))
+            {
+                if (writeHeader)
+                    await stream.WriteLineAsync("facts,length");
+                await stream.WriteLineAsync($"{fact.Fact.Replace(",", " ")},{fact.Length}");
+            }
+        }
     }
-}
 }

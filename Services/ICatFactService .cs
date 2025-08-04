@@ -1,15 +1,10 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using CatFactApp.Models;
 
 namespace CatFactApp.Services
 {
     public interface ICatFactService
     {
-        Task<string> GetCatFactAsync();
-
+        Task<CatFact> GetCatFactAsync();
     }
 }
