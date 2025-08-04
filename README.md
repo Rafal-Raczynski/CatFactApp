@@ -1,6 +1,6 @@
 # CatFactApp
 
-Aplikacja konsolowa .NET, która pobiera losowy fakt o kotach z publicznego API i zapisuje go do pliku CSV.
+Aplikacja konsolowa .NET, która pobiera losowy fakt o kotach z publicznego API i zapisuje go do pliku txt.
 
 ## Funkcje
 
