@@ -31,13 +31,13 @@ Aplikacja konsolowa .NET, która pobiera losowy fakt o kotach z publicznego API i
     dotnet run
     ```
 
-Po uruchomieniu, nowy fakt o kotach zostanie zapisany do pliku `Data/cat_facts.txt` w formacie CSV.
+Po uruchomieniu, nowy fakt o kotach zostanie zapisany do pliku `Data/cat_facts.txt` w formacie txt.
 
 ## Struktura projektu
 
 - `App.cs` – g³ówna logika aplikacji.
 - `Services/CatFactService.cs` – pobieranie faktów o kotach z API.
-- `Utils/FileWriter.cs` – zapisywanie faktów do pliku CSV.
+- `Utils/FileWriter.cs` – zapisywanie faktów do pliku txt.
 - `Models/CatFact.cs` – model danych faktu o kocie.
 
 ## Przyk³ad zapisu w pliku
