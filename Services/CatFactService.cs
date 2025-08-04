@@ -18,7 +18,7 @@ namespace CatFactApp.Services
         {
             var response = await _httpClient.GetStringAsync("https://catfact.ninja/fact");
             var factObj = JsonSerializer.Deserialize<CatFact>(response);
-
+            //Stworzenie wyjątku
             if (factObj == null || string.IsNullOrWhiteSpace(factObj.Fact))
                 throw new Exception("Cat fact could not be fetched or deserialized.");
             return factObj;

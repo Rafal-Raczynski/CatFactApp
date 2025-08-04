@@ -9,7 +9,7 @@ namespace CatFactApp.Utils
     {
         public async Task AppendFactAsync(string fileName, CatFact fact)
         {
-            // Katalog startowy aplikacji (tam gdzie masz .csproj)
+            // Katalog startowy aplikacji (tam gdzie jest .csproj)
             string projectRoot = GetProjectRoot();
 
             // Katalog Data w katalogu projektu
@@ -26,7 +26,7 @@ namespace CatFactApp.Utils
             {
                 if (writeHeader)
                     await stream.WriteLineAsync("facts,length");
-                await stream.WriteLineAsync($"{fact.Fact?.Replace(",", " ")},{fact.Length}");
+                await stream.WriteLineAsync($"\"{fact.Fact}\",{fact.Length}");
             }
         }
         private string GetProjectRoot()
