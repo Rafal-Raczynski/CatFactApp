@@ -20,7 +20,7 @@ namespace CatFactApp
         public async Task RunAsync()
         {
             var fact = await _catFactService.GetCatFactAsync();
-            await _fileWriter.AppendFactAsync("../../../Data/cat_facts.txt", fact);
+            await _fileWriter.AppendFactAsync("cat_facts.txt", fact);
             Console.WriteLine($"Saved fact: {fact.Fact} (Length: {fact.Length})");
         }
     }
