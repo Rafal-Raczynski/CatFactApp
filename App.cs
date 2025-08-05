@@ -19,15 +19,28 @@ namespace CatFactApp
 
         public async Task RunAsync()
         {
-            try
+            Console.WriteLine("Naciśnij 'C', aby wygenerować ciekawostkę o kotach, lub 'Q', aby zakończyć.");
+            while (true)
             {
-                var fact = await _catFactService.GetCatFactAsync();
-                await _fileWriter.AppendFactAsync("cat_facts.txt", fact);
-                Console.WriteLine($"Saved fact: {fact.Fact} (length: {fact.Length})");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error: {ex.Message}");
+                var key = Console.ReadKey(true);
+                if (key.Key == ConsoleKey.C)
+                {
+                    try
+                    {
+                        var fact = await _catFactService.GetCatFactAsync();
+                        await _fileWriter.AppendFactAsync("cat_facts.txt", fact);
+                        Console.WriteLine($"Saved fact: {fact.Fact} (length: {fact.Length})");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error: {ex.Message}");
+                    }
+                }
+                else if (key.Key == ConsoleKey.Q)
+                {
+                    Console.WriteLine("Zakończono.");
+                    break;
+                }
             }
         }
     }
