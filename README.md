@@ -4,8 +4,8 @@ Aplikacja konsolowa .NET, która pobiera losowy fakt o kotach z publicznego API i
 
 ## Funkcje
 
-- Obs³u¿y wiele ciekawostek – naciœnij `c`, by pobraæ kolejn¹
-- Zakoñczy aplikajê naciskaj¹c `q`
+- Obs³u¿y wiele ciekawostek – naciœnij `c`, by pobraæ kolejn¹.
+- Zakoñczy aplikajê naciskaj¹c `q`.
 - Pobiera losow¹ ciekawostkê o kotach z API [`catfact.ninja`](https://catfact.ninja/fact).
 - Zapisuje dane w pliku txt: `Data/cat_facts.txt`.
 - Automatycznie tworzy katalog `Data`, jeœli nie istnieje.
