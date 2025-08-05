@@ -19,7 +19,7 @@ namespace CatFactApp
 
         public async Task RunAsync()
         {
-            Console.WriteLine("Naciśnij 'C', aby wygenerować ciekawostkę o kotach, lub 'Q', aby zakończyć.");
+            Console.WriteLine("Naciśnij 'c', aby wygenerować ciekawostkę o kotach, lub 'q', aby zakończyć.");
             while (true)
             {
                 var key = Console.ReadKey(true);

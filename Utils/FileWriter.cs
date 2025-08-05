@@ -24,11 +24,18 @@ namespace CatFactApp.Utils
 
             using (var stream = new StreamWriter(filePath, append: true))
             {
+                // Automatyczny nagłówek
                 if (writeHeader)
-                    await stream.WriteLineAsync("fact,length");
-                await stream.WriteLineAsync($"\"{fact.Fact}\",{fact.Length}");
+                    await stream.WriteLineAsync(string.Join(",", typeof(CatFact).GetProperties().Select(p => p.Name.ToLower())));
+
+                await stream.WriteLineAsync(string.Join(",", typeof(CatFact).GetProperties().Select(p =>
+                {
+                    var value = p.GetValue(fact);
+                    return p.PropertyType == typeof(string) ? $"\"{value}\"" : value?.ToString();
+                })));
             }
         }
+        
         private string GetProjectRoot()
         {
             string dir = AppContext.BaseDirectory;
